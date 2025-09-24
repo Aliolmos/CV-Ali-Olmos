@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingeniería en Computación</title>
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 120px 20px 80px;
+            background: rgba(30, 30, 46, 0.7);
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(5px);
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(74, 144, 226, 0.7);
+            margin: 0 auto 25px;
+            display: block;
+            box-shadow: 0 0 25px rgba(74, 144, 226, 0.5);
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            font-family: 'Source Code Pro', monospace;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            color: #a0c4ff;
+        }
+
+        .education {
+            font-size: 1.1rem;
+            color: #c9d6ff;
+            margin-bottom: 25px;
+            background: rgba(40, 40, 60, 0.5);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        section {
+            padding: 60px 30px;
+            margin: 40px auto;
+            max-width: 900px;
+            background: rgba(40, 40, 60, 0.7);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid #4a90e2;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #4a90e2;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: #4a90e2;
+            bottom: -10px;
+            left: 20%;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        li {
+            background: rgba(74, 144, 226, 0.2);
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: transform 0.3s, background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(74, 144, 226, 0.3);
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+            background: rgba(74, 144, 226, 0.3);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.2);
+        }
+
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .knowledge-item {
+            background: rgba(50, 50, 70, 0.5);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            border-top: 3px solid #4a90e2;
+        }
+
+        .knowledge-item:hover {
+            transform: translateY(-8px);
+            background: rgba(60, 60, 80, 0.7);
+        }
+
+        .knowledge-item i {
+            font-size: 2.5rem;
+            color: #4a90e2;
+            margin-bottom: 15px;
+        }
+
+        .knowledge-item h3 {
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .future-content {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .future-content p {
+            margin-bottom: 20px;
+            text-align: left;
+            background: rgba(50, 50, 70, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #4a90e2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #4a90e2;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+            border: none;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.6);
+            background: #5a9ff2;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            background: rgba(30, 30, 46, 0.8);
+            border-radius: 20px 20px 0 0;
+            font-size: 0.9rem;
+            color: #a0c4ff;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 40px 20px;
+            }
+            
+            .knowledge-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <header data-aos="fade-down" data-aos-duration="1000">
+            <div class="profile-container">
+                <img src="images/imagen-perfil.jpg" alt="Alina Trinidad Olmos" class="profile-img" data-aos="zoom-in" data-aos-delay="300">
+                <h1>Alina Trinidad Olmos</h1>
+                <p class="tagline">Estudiante de Ingeniería en Computación | Apasionada por la innovación tecnológica</p>
+                <div class="education">
+                    <span class="material-icons" style="vertical-align: middle; margin-right: 5px;">school</span>
+                    Secundario con orientación en Informática | Ingeniería en Computación (en curso)
+                </div>
+                <a href="CV_AlinaOlmos.pdf" download="CV_AlinaOlmos.pdf" class="btn" data-aos="fade-up" data-aos-delay="500">
+                    <i class="material-icons">download</i> Descargar CV
+                </a>
+            </div>
+        </header>
+
+        <section data-aos="fade-right" data-aos-duration="800">
+            <h2>Habilidades en Informática y Tecnológicas</h2>
+            <ul>
+                <li><i class="material-icons">computer</i> Armado, reparación y optimización de PC</li>
+                <li><i class="material-icons">memory</i> Conocimiento en hardware (CPU, GPU, memorias, almacenamiento, placas base, fuentes)</li>
+                <li><i class="material-icons">settings</i> Experiencia en actualización de componentes y asesoramiento en compras</li>
+                <li><i class="material-icons">build</i> Manejo de software de diagnóstico y optimización de rendimiento</li>
+                <li><i class="material-icons">desktop_windows</i> Instalación y configuración de sistemas operativos Windows y Linux</li>
+            </ul>
+        </section>
+
+        <section data-aos="fade-left" data-aos-duration="800">
+            <h2>Conocimientos Académicos</h2>
+            <div class="knowledge-grid">
+                <div class="knowledge-item" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="material-icons">school</i>
+                    <h3>Estudiante de Ingeniería en Computación (UCC)</h3>
+                    <p>Formación en programación, sistemas, arquitectura y tecnologías emergentes</p>
+                </div>
+                <div class="knowledge-item" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="material-icons">memory</i>
+                    <h3>Arquitectura de Computadoras</h3>
+                    <p>Procesadores, memorias, buses, placas base y sistemas de entrada/salida</p>
+                </div>
+                <div class="knowledge-item" data-aos="zoom-in" data-aos-delay="600">
+                    <i class="material-icons">desktop_windows</i>
+                    <h3>Sistemas Operativos</h3>
+                    <p>Instalación, configuración y administración en Windows y Linux</p>
+                </div>
+                <div class="knowledge-item" data-aos="zoom-in" data-aos-delay="800">
+                    <i class="material-icons">psychology</i>
+                    <h3>Inteligencia Artificial y Automatización</h3>
+                    <p>Desarrollo de proyectos con IA local, Home Assistant y dispositivos embebidos</p>
+                </div>
+                <div class="knowledge-item" data-aos="zoom-in" data-aos-delay="1000">
+                    <i class="material-icons">integration_instructions</i>
+                    <h3>Ingeniería de Software</h3>
+                    <p>Metodologías ágiles, patrones de diseño, testing y desarrollo web</p>
+                </div>
+            </div>
+        </section>
+
+        <section data-aos="zoom-in" data-aos-duration="1000">
+            <h2>Proyección Profesional</h2>
+            <div class="future-content">
+                <p>Como futura ingeniera en computación, mi visión va más allá de ejercer en la industria: aspiro a crear mi propia empresa de base tecnológica. Mi objetivo es construir un espacio donde la innovación y la creatividad se unan para desarrollar soluciones que transformen la vida de las personas.</p>
+                <p>Me apasiona aprender y dominar todas las áreas relacionadas con la informática, la computación, la inteligencia artificial y las nuevas tecnologías. Busco explorar de manera integral este mundo en constante evolución, adquiriendo una formación sólida que me permita enfrentar cualquier desafío.</p>
+                <p>Con una mirada a futuro, quiero consolidar un perfil emprendedor y líder, capaz de impulsar proyectos que integren sistemas embebidos, IoT, automatización inteligente y desarrollo de software avanzado, siempre con la meta de dejar una huella en el campo tecnológico.</p>
+            </div>
+        </section>
+
+        <footer data-aos="fade-up">
+            <p>¿Interesado en colaborar o conocer más sobre mi trabajo?</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="material-icons">email</i>
+                    <span>aliolmos19@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="material-icons">phone</i>
+                    <span>+54 351 7545976</span>
+                </div>
+                <div class="contact-item">
+                    <i class="material-icons">location_on</i>
+                    <span>Cordoba Capital, Argentina</span>
+                </div>
+            </div>
+            <p style="margin-top: 20px;">&copy; 2025 - Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Inicializar AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Inicializar partículas
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#4a90e2"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true
+                },
+                size: {
+                    value: 3,
+                    random: true
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4a90e2",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
